@@ -1,4 +1,4 @@
-use std::{ffi::CStr, mem::MaybeUninit, slice};
+use std::{ffi::CStr, slice};
 
 use librazermacos_sys::{
     closeAllRazerDevices, getAllRazerDevices, razer_attr_read_get_battery,
@@ -101,8 +101,8 @@ impl RazerDevice {
             .find(|device| device.product_id == product_id)
     }
 
-    pub fn battery(&self) -> i8 {
-        unsafe {
+    pub fn battery(&self) -> u8 {
+        let c_str = unsafe {
             let devices = getAllRazerDevices();
             let slice = slice::from_raw_parts(devices.devices, devices.size as usize);
 
@@ -111,13 +111,15 @@ impl RazerDevice {
                 .find(|d| d.internalDeviceId == self.internal_device_id)
                 .unwrap();
 
-            let mut buf = MaybeUninit::uninit();
+            let mut buf = [0i8; 4];
             razer_attr_read_get_battery(device.usbDevice, buf.as_mut_ptr());
             closeAllRazerDevices(devices);
 
-            let buf = buf.assume_init();
-            buf.to_owned()
-        }
+            CStr::from_ptr(buf.as_ptr())
+        };
+        let str = format!("{}", c_str.to_str().unwrap()).trim().to_string();
+        let current: u8 = str.parse().unwrap();
+        return ((current as f32 / 255.0) * 100.0) as u8;
     }
 
     pub fn is_charging(&self) -> bool {
