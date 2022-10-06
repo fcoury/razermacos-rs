@@ -1,5 +1,8 @@
-use ffi::{closeAllRazerDevices, getAllRazerDevices, razer_attr_read_get_battery};
-use std::{mem::MaybeUninit, slice};
+use ffi::{
+    closeAllRazerDevices, getAllRazerDevices, razer_attr_read_get_battery,
+    razer_attr_read_is_charging,
+};
+use std::{ffi::CStr, mem::MaybeUninit, slice};
 
 pub use ffi::USB_DEVICE_ID_RAZER_VIPER_ULTIMATE_WIRELESS;
 
@@ -58,6 +61,25 @@ impl RazerDevice {
             let buf = buf.assume_init();
             buf.to_owned()
         }
+    }
+
+    pub fn is_charging(&self) -> bool {
+        let c_str = unsafe {
+            let devices = getAllRazerDevices();
+            let slice = slice::from_raw_parts(devices.devices, devices.size as usize);
+
+            let device = slice
+                .iter()
+                .find(|d| d.internalDeviceId == self.internal_device_id)
+                .unwrap();
+
+            let mut buf = [0i8; 4];
+            razer_attr_read_is_charging(device.usbDevice, buf.as_mut_ptr());
+            closeAllRazerDevices(devices);
+
+            CStr::from_ptr(buf.as_ptr())
+        };
+        format!("{}", c_str.to_str().unwrap()).starts_with("1")
     }
 }
 
