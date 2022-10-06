@@ -42,6 +42,12 @@ impl Razer {
             .collect::<Vec<_>>()
     }
 
+    pub fn find(&self, product_id: u16) -> Option<RazerDevice> {
+        self.get_all_devices()
+            .into_iter()
+            .find(|device| device.product_id == product_id)
+    }
+
     pub fn battery(&self, device: &RazerDevice) -> i8 {
         unsafe {
             let devices = getAllRazerDevices();
