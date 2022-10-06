@@ -12,7 +12,7 @@ license-file = "LICENSE"
 name = "razermacos"
 readme = "README.md"
 repository = "https://github.com/fcoury/razermacos-rs"
-version = "0.1.0"
+version = "0.1.1"
 
 [dependencies]
 librazermacos-sys = {path = "librazermacos-sys", version = "0.1.0"}
