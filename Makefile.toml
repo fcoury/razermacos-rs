@@ -1,0 +1,29 @@
+# Global Settings
+[env]
+CARGO_TARGET_DIR = "${CARGO_MAKE_WORKSPACE_WORKING_DIRECTORY}/target"
+
+[tasks.build]
+args = ["build"]
+
+[tasks.build-release]
+args = ["build", "--release"]
+
+[tasks.publish]
+clear = true
+dependencies = [
+  "release-commit",
+]
+
+[tasks.release-commit]
+args = ["push", "--atomic", "origin", "master", "v${CARGO_MAKE_CRATE_VERSION}"]
+command = "git"
+dependencies = ["commit-all", "tag-release"]
+
+[tasks.commit-all]
+args = ["commit", "-aem", "chore(release): v${CARGO_MAKE_CRATE_VERSION}"]
+command = "git"
+ignore_errors = true
+
+[tasks.tag-release]
+args = ["tag", "--annotate", "--message", "Version ${CARGO_MAKE_CRATE_VERSION}", "v${CARGO_MAKE_CRATE_VERSION}"]
+command = "git"
