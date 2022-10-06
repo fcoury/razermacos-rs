@@ -5,8 +5,12 @@ Bindings to librazermacos for allowing interaction with Razer peripherals
 on macOS.
 """
 edition = "2021"
+homepage = "https://github.com/fcoury/razermacos-rs"
 keywords = ["razer", "mac", "macos"]
+license-file = "LICENSE"
 name = "razermacos"
+readme = "README.md"
+repository = "https://github.com/fcoury/razermacos-rs"
 version = "0.1.0"
 
 [dependencies]
