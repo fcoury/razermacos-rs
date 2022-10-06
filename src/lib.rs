@@ -5,6 +5,72 @@ use librazermacos_sys::{
     razer_attr_read_is_charging,
 };
 
+// Device constants
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_ABYSSUS;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_ABYSSUS_1800;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_ABYSSUS_2000;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_ABYSSUS_ELITE_DVA_EDITION;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_ABYSSUS_ESSENTIAL;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_ABYSSUS_V2;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_ATHERIS_RECEIVER;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_BASILISK;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_BASILISK_ESSENTIAL;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_BASILISK_ULTIMATE;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_BASILISK_ULTIMATE_RECEIVER;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_BASILISK_V2;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_BASILISK_V3;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_DEATHADDER_1800;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_DEATHADDER_2013;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_DEATHADDER_3500;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_DEATHADDER_3_5G;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_DEATHADDER_CHROMA;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_DEATHADDER_ELITE;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_DEATHADDER_ESSENTIAL;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_DEATHADDER_ESSENTIAL_2021;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_DEATHADDER_ESSENTIAL_WHITE_EDITION;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_DEATHADDER_V2;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_DEATHADDER_V2_MINI;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_DEATHADDER_V2_PRO_WIRED;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_DEATHADDER_V2_PRO_WIRELESS;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_DIAMONDBACK_CHROMA;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_IMPERATOR;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_LANCEHEAD_TE_WIRED;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_LANCEHEAD_WIRED;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_LANCEHEAD_WIRELESS;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_LANCEHEAD_WIRELESS_RECEIVER;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_LANCEHEAD_WIRELESS_WIRED;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_MAMBA_2012_WIRED;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_MAMBA_2012_WIRELESS;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_MAMBA_ELITE;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_MAMBA_TE_WIRED;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_MAMBA_WIRED;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_MAMBA_WIRELESS;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_MAMBA_WIRELESS_RECEIVER;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_MAMBA_WIRELESS_WIRED;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_NAGA_2012;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_NAGA_2014;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_NAGA_CHROMA;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_NAGA_HEX;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_NAGA_HEX_RED;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_NAGA_HEX_V2;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_NAGA_LEFT_HANDED_2020;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_NAGA_PRO_WIRED;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_NAGA_PRO_WIRELESS;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_NAGA_TRINITY;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_OROCHI_2011;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_OROCHI_2013;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_OROCHI_CHROMA;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_OROCHI_V2;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_OROCHI_V2_BLUETOOTH;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_OROCHI_V2_RECEIVER;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_OUROBOROS;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_TAIPAN;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_VIPER;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_VIPER_8KHZ;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_VIPER_MINI;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_VIPER_ULTIMATE_WIRED;
+pub use librazermacos_sys::USB_DEVICE_ID_RAZER_VIPER_ULTIMATE_WIRELESS;
+
 #[derive(Clone, Debug)]
 pub struct RazerDevice {
     pub internal_device_id: i32,
