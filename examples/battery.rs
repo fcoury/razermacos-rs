@@ -1,4 +1,5 @@
-use librazermacos_sys::{RazerDevice, USB_DEVICE_ID_RAZER_VIPER_ULTIMATE_WIRELESS};
+use librazermacos_sys::USB_DEVICE_ID_RAZER_VIPER_ULTIMATE_WIRELESS;
+use razermacos::RazerDevice;
 
 fn main() {
     let device = RazerDevice::find(USB_DEVICE_ID_RAZER_VIPER_ULTIMATE_WIRELESS as u16);
