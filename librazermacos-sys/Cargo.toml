@@ -1,7 +1,15 @@
 [package]
+authors = ["Felipe Coury <felipe.coury@gmail.com>"]
+build = "build.rs"
+description = """
+Bindings to librazermacos for allowing interaction with Razer peripherals
+on macOS.
+"""
 edition = "2021"
+license = "Apache-2.0"
 links = "razermacos"
 name = "librazermacos-sys"
+repository = "https://github.com/fcoury/razermacos-rs"
 version = "0.1.0"
 
 [lib]
