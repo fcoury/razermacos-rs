@@ -1,3 +1,8 @@
+use ffi::{closeAllRazerDevices, getAllRazerDevices, razer_attr_read_get_battery};
+use std::{mem::MaybeUninit, slice};
+
+pub use ffi::USB_DEVICE_ID_RAZER_VIPER_ULTIMATE_WIRELESS;
+
 #[allow(dead_code)]
 #[allow(non_upper_case_globals)]
 #[allow(non_camel_case_types)]
@@ -6,26 +11,14 @@ mod ffi {
     include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
 }
 
-use ffi::razer_attr_read_get_battery;
-use std::{mem::MaybeUninit, slice};
-
-pub use ffi::getAllRazerDevices;
-pub use ffi::USB_DEVICE_ID_RAZER_VIPER_ULTIMATE_WIRELESS;
-
-use crate::ffi::closeAllRazerDevices;
-
-// #[non_exhaustive]
-#[derive(Clone, Debug)]
-pub struct Razer;
-
 #[derive(Clone, Debug)]
 pub struct RazerDevice {
     pub internal_device_id: i32,
     pub product_id: u16,
 }
 
-impl Razer {
-    pub fn get_all_devices(&self) -> Vec<RazerDevice> {
+impl RazerDevice {
+    pub fn all() -> Vec<RazerDevice> {
         let devices = unsafe {
             let devices = getAllRazerDevices();
             assert!(!devices.devices.is_null());
@@ -42,20 +35,20 @@ impl Razer {
             .collect::<Vec<_>>()
     }
 
-    pub fn find(&self, product_id: u16) -> Option<RazerDevice> {
-        self.get_all_devices()
+    pub fn find(product_id: u16) -> Option<RazerDevice> {
+        Self::all()
             .into_iter()
             .find(|device| device.product_id == product_id)
     }
 
-    pub fn battery(&self, device: &RazerDevice) -> i8 {
+    pub fn battery(&self) -> i8 {
         unsafe {
             let devices = getAllRazerDevices();
             let slice = slice::from_raw_parts(devices.devices, devices.size as usize);
 
             let device = slice
                 .iter()
-                .find(|d| d.internalDeviceId == device.internal_device_id)
+                .find(|d| d.internalDeviceId == self.internal_device_id)
                 .unwrap();
 
             let mut buf = MaybeUninit::uninit();
@@ -68,26 +61,17 @@ impl Razer {
     }
 }
 
-impl RazerDevice {
-    pub fn battery(&self) -> i8 {
-        Razer {}.battery(&self.clone())
-    }
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
 
     #[test]
     fn it_works() {
-        let razer = Razer {};
-        let devices = razer.get_all_devices();
-        println!("Devices: {:?}", devices);
-        for device in devices {
-            if device.product_id == USB_DEVICE_ID_RAZER_VIPER_ULTIMATE_WIRELESS as u16 {
-                println!("Found Viper Ultimate Wireless");
-                println!("Battery: {}", device.battery());
-            }
+        let device = RazerDevice::find(USB_DEVICE_ID_RAZER_VIPER_ULTIMATE_WIRELESS as u16);
+        if let Some(device) = device {
+            println!("Battery: {}", device.battery());
+        } else {
+            println!("Device not found");
         }
     }
 }

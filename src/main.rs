@@ -1,8 +1,7 @@
-use librazermacos_sys::{Razer, USB_DEVICE_ID_RAZER_VIPER_ULTIMATE_WIRELESS};
+use librazermacos_sys::{RazerDevice, USB_DEVICE_ID_RAZER_VIPER_ULTIMATE_WIRELESS};
 
 fn main() {
-    let razer = Razer {};
-    let device = razer.find(USB_DEVICE_ID_RAZER_VIPER_ULTIMATE_WIRELESS as u16);
+    let device = RazerDevice::find(USB_DEVICE_ID_RAZER_VIPER_ULTIMATE_WIRELESS as u16);
     if let Some(device) = device {
         println!("Battery: {}", device.battery());
     } else {
