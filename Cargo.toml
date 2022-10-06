@@ -1,0 +1,13 @@
+[package]
+categories = ["api-bindings"]
+description = """
+Bindings to librazermacos for allowing interaction with Razer peripherals
+on macOS.
+"""
+edition = "2021"
+keywords = ["razer", "mac", "macos"]
+name = "razermacos"
+version = "0.1.0"
+
+[dependencies]
+librazermacos-sys = {path = "librazermacos-sys", version = "0.1.0"}

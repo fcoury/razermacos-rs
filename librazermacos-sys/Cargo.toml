@@ -1,0 +1,15 @@
+[package]
+edition = "2021"
+links = "razermacos"
+name = "librazermacos-sys"
+version = "0.1.0"
+
+[lib]
+name = "librazermacos_sys"
+path = "lib.rs"
+
+[build-dependencies]
+bindgen = "0.60.1"
+cc = {version = "1.0.73", features = ["parallel"]}
+
+[dependencies]
