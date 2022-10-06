@@ -10,6 +10,5 @@ path = "lib.rs"
 
 [build-dependencies]
 bindgen = "0.60.1"
-cc = {version = "1.0.73", features = ["parallel"]}
 
 [dependencies]
