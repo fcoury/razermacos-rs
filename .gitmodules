@@ -1,3 +1,4 @@
 [submodule "librazermacos-sys/librazermacos"]
 	path = librazermacos-sys/librazermacos
 	url = https://github.com/1kc/librazermacos.git
+	ignore = dirty
