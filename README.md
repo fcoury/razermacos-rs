@@ -4,7 +4,7 @@ librazermacos bindings for Rust.
 
 ```toml
 [dependencies]
-razermacos = "0.1"
+razermacos = "0.1.1"
 ```
 
 ## librazermacos
@@ -19,3 +19,10 @@ cd librazermacos
 make
 sudo cp librazermacos.so /usr/local/lib
 ```
+
+## Thanks
+
+Special thanks to:
+
+- @1kc for the original [librazermacos](https://github.com/1kc/librazermacos)
+- [@semicoleon](https://users.rust-lang.org/u/semicoleon/summary) and [@afetisov](https://users.rust-lang.org/u/afetisov) over at the Rust Forum for the help on the initial design process for this library
