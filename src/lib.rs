@@ -5,115 +5,44 @@ use librazermacos_sys::{
     razer_attr_read_is_charging,
 };
 
-// Device constants
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_ABYSSUS;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_ABYSSUS_1800;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_ABYSSUS_2000;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_ABYSSUS_ELITE_DVA_EDITION;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_ABYSSUS_ESSENTIAL;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_ABYSSUS_V2;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_ATHERIS_RECEIVER;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_BASILISK;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_BASILISK_ESSENTIAL;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_BASILISK_ULTIMATE;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_BASILISK_ULTIMATE_RECEIVER;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_BASILISK_V2;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_BASILISK_V3;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_DEATHADDER_1800;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_DEATHADDER_2013;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_DEATHADDER_3500;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_DEATHADDER_3_5G;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_DEATHADDER_CHROMA;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_DEATHADDER_ELITE;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_DEATHADDER_ESSENTIAL;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_DEATHADDER_ESSENTIAL_2021;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_DEATHADDER_ESSENTIAL_WHITE_EDITION;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_DEATHADDER_V2;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_DEATHADDER_V2_MINI;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_DEATHADDER_V2_PRO_WIRED;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_DEATHADDER_V2_PRO_WIRELESS;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_DIAMONDBACK_CHROMA;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_IMPERATOR;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_LANCEHEAD_TE_WIRED;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_LANCEHEAD_WIRED;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_LANCEHEAD_WIRELESS;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_LANCEHEAD_WIRELESS_RECEIVER;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_LANCEHEAD_WIRELESS_WIRED;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_MAMBA_2012_WIRED;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_MAMBA_2012_WIRELESS;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_MAMBA_ELITE;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_MAMBA_TE_WIRED;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_MAMBA_WIRED;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_MAMBA_WIRELESS;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_MAMBA_WIRELESS_RECEIVER;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_MAMBA_WIRELESS_WIRED;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_NAGA_2012;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_NAGA_2014;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_NAGA_CHROMA;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_NAGA_HEX;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_NAGA_HEX_RED;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_NAGA_HEX_V2;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_NAGA_LEFT_HANDED_2020;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_NAGA_PRO_WIRED;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_NAGA_PRO_WIRELESS;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_NAGA_TRINITY;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_OROCHI_2011;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_OROCHI_2013;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_OROCHI_CHROMA;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_OROCHI_V2;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_OROCHI_V2_BLUETOOTH;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_OROCHI_V2_RECEIVER;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_OUROBOROS;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_TAIPAN;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_VIPER;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_VIPER_8KHZ;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_VIPER_MINI;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_VIPER_ULTIMATE_WIRED;
-pub use librazermacos_sys::USB_DEVICE_ID_RAZER_VIPER_ULTIMATE_WIRELESS;
+mod devices;
 
-#[derive(Clone, Debug)]
-pub struct RazerDevice {
-    pub internal_device_id: i32,
-    pub product_id: u16,
+pub struct RazerDevices(librazermacos_sys::RazerDevices);
+
+impl RazerDevices {
+    pub fn all() -> Self {
+        let devices = unsafe { getAllRazerDevices() };
+        assert!(!devices.devices.is_null());
+
+        Self(devices)
+    }
+
+    pub fn find(&mut self, product_id: u16) -> Option<RazerDevice<'_>> {
+        self.slice_mut()
+            .iter_mut()
+            .find(|device| device.productId == product_id)
+            .map(RazerDevice)
+    }
+
+    fn slice_mut(&mut self) -> &mut [librazermacos_sys::RazerDevice] {
+        unsafe { slice::from_raw_parts_mut(self.0.devices, self.0.size as usize) }
+    }
 }
 
-impl RazerDevice {
-    pub fn all() -> Vec<RazerDevice> {
-        let devices = unsafe {
-            let devices = getAllRazerDevices();
-            assert!(!devices.devices.is_null());
-            closeAllRazerDevices(devices);
-            slice::from_raw_parts(devices.devices, devices.size as usize)
-        };
-
-        devices
-            .iter()
-            .map(|device| RazerDevice {
-                internal_device_id: device.internalDeviceId,
-                product_id: device.productId,
-            })
-            .collect::<Vec<_>>()
+impl Drop for RazerDevices {
+    fn drop(&mut self) {
+        unsafe { closeAllRazerDevices(self.0) }
     }
+}
 
-    pub fn find(product_id: u16) -> Option<RazerDevice> {
-        Self::all()
-            .into_iter()
-            .find(|device| device.product_id == product_id)
-    }
+#[derive(Debug)]
+pub struct RazerDevice<'a>(&'a mut librazermacos_sys::RazerDevice);
 
+impl RazerDevice<'_> {
     pub fn battery(&self) -> u8 {
         let c_str = unsafe {
-            let devices = getAllRazerDevices();
-            let slice = slice::from_raw_parts(devices.devices, devices.size as usize);
-
-            let device = slice
-                .iter()
-                .find(|d| d.internalDeviceId == self.internal_device_id)
-                .unwrap();
-
             let mut buf = [0i8; 4];
-            razer_attr_read_get_battery(device.usbDevice, buf.as_mut_ptr());
-            closeAllRazerDevices(devices);
+            razer_attr_read_get_battery(self.0.usbDevice, buf.as_mut_ptr());
 
             CStr::from_ptr(buf.as_ptr())
         };
@@ -124,17 +53,8 @@ impl RazerDevice {
 
     pub fn is_charging(&self) -> bool {
         let c_str = unsafe {
-            let devices = getAllRazerDevices();
-            let slice = slice::from_raw_parts(devices.devices, devices.size as usize);
-
-            let device = slice
-                .iter()
-                .find(|d| d.internalDeviceId == self.internal_device_id)
-                .unwrap();
-
             let mut buf = [0i8; 4];
-            razer_attr_read_is_charging(device.usbDevice, buf.as_mut_ptr());
-            closeAllRazerDevices(devices);
+            razer_attr_read_is_charging(self.0.usbDevice, buf.as_mut_ptr());
 
             CStr::from_ptr(buf.as_ptr())
         };
@@ -150,7 +70,8 @@ mod tests {
 
     #[test]
     fn it_works() {
-        let device = RazerDevice::find(USB_DEVICE_ID_RAZER_VIPER_ULTIMATE_WIRELESS as u16);
+        let mut devices = RazerDevices::all();
+        let device = devices.find(USB_DEVICE_ID_RAZER_VIPER_ULTIMATE_WIRELESS as u16);
         if let Some(device) = device {
             println!("Battery: {}", device.battery());
         } else {
