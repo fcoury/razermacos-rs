@@ -140,20 +140,6 @@ fn main() {
         ];
     }
 
-    // impl RazerDeviceDescriptor {
-    //     pub fn find(product_id: u16) -> Option<Self> {
-    //         let devices = RAZER_DEVICES.clone();
-    //         if let Some(device) = devices
-    //             .iter()
-    //             .find(|device| device.product_id == product_id)
-    //         {
-    //             return Some(device.clone());
-    //         }
-
-    //         None
-    //     }
-    // }
-
     pub fn find_descriptor<'a>(product_id: u16) -> Option<&'a RazerDeviceDescriptor> {
         if let Some(device) = RAZER_DEVICES
             .iter()
@@ -167,6 +153,5 @@ fn main() {
     "#,
     );
 
-    // eprintln!("razer_path = {:?}", &razer_path);
     fs::write(razer_path, contents).unwrap();
 }
