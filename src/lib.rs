@@ -5,9 +5,7 @@ use librazermacos_sys::{
     razer_attr_read_is_charging,
 };
 
-pub mod devices {
-    include!(concat!(env!("OUT_DIR"), "/razer_devices.rs"));
-}
+pub mod devices;
 
 pub struct RazerDevices(librazermacos_sys::RazerDevices);
 
