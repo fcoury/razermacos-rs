@@ -1,0 +1,23 @@
+{
+  "name": "Razer Viper",
+  "productId": "0x0078",
+  "mainType": "mouse",
+  "image": "https://assets.razerzone.com/eeimages/support/products/1539/1539_viper.png",
+  "features": null,
+  "featuresMissing": ["waveSimple"],
+  "featuresConfig": [
+    {
+      "mouseBrightness": {
+        "enabledMatrix": false,
+        "enabledScroll": false,
+        "enabledLeft": false,
+        "enabledRight": false
+      }
+    },
+    {
+      "dpi": {
+        "max": 16000
+      }
+    }
+  ]
+}

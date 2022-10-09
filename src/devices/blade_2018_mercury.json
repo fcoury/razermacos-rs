@@ -1,0 +1,21 @@
+{
+  "name": "Razer Blade 2018 Mercury",
+  "productId": "0x0240",
+  "mainType": "keyboard",
+  "image": "https://assets.razerzone.com/eeimages/support/products/1552/1552-blade-stealth-mercury-white.png",
+  "features": null,
+  "featuresConfig": [
+    {
+      "ripple": {
+          "rows": 6,
+          "cols": 16
+      }
+    },
+    {
+      "wheel": {
+          "rows": 6,
+          "cols": 16
+      }
+    }
+  ]
+}

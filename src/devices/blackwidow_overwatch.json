@@ -1,0 +1,21 @@
+{
+  "name": "Razer BlackWidow Overwatch",
+  "productId": "0x0211",
+  "mainType": "keyboard",
+  "image": "https://assets.razerzone.com/eeimages/products/23326/overwatch-razer-gallery-5.png",
+  "features": null,
+  "featuresConfig": [
+    {
+      "ripple": {
+          "rows": 6,
+          "cols": 22
+      }
+    },
+    {
+      "wheel": {
+          "rows": 6,
+          "cols": 22
+      }
+    }
+  ]
+}
