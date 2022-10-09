@@ -1,3 +1,6 @@
+// Device descriptors
+include!(concat!(env!("OUT_DIR"), "/razer_devices.rs"));
+
 // Device constants
 pub use librazermacos_sys::USB_DEVICE_ID_RAZER_ABYSSUS;
 pub use librazermacos_sys::USB_DEVICE_ID_RAZER_ABYSSUS_1800;

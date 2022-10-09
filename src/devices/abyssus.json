@@ -1,0 +1,8 @@
+{
+  "name": "Razer Abyssus",
+  "productId": "0x0042",
+  "mainType": "mouse",
+  "image": "https://assets.razerzone.com/eeimages/support/products/274/abyssus2014_500x500.png",
+  "features": null,
+  "featuresMissing": ["mouseBrightness"]
+}
