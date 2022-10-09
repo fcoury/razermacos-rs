@@ -12,7 +12,7 @@ pub mod devices {
 pub struct RazerDevices(librazermacos_sys::RazerDevices);
 
 impl RazerDevices {
-    pub fn all() -> Self {
+    pub fn init() -> Self {
         let devices = unsafe { getAllRazerDevices() };
         assert!(!devices.devices.is_null());
 
@@ -93,7 +93,7 @@ mod tests {
 
     #[test]
     fn it_works() {
-        let mut devices = RazerDevices::all();
+        let mut devices = RazerDevices::init();
         let device = devices.find(USB_DEVICE_ID_RAZER_VIPER_ULTIMATE_WIRELESS as u16);
         if let Some(device) = device {
             println!("{} - Battery: {}", device.name, device.battery());
