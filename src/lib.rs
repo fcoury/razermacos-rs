@@ -10,7 +10,7 @@ pub mod devices;
 pub struct RazerDevices(librazermacos_sys::RazerDevices);
 
 impl RazerDevices {
-    pub fn init() -> Self {
+    pub fn new() -> Self {
         let devices = unsafe { getAllRazerDevices() };
         assert!(!devices.devices.is_null());
 
