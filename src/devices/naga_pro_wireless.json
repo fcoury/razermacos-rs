@@ -3,8 +3,13 @@
   "productId": "0x0090",
   "mainType": "mouse",
   "image": "https://assets.razerzone.com/eeimages/support/products/1710/small_product.png",
-  "features": null,
-  "featuresMissing": ["oldMouseEffects","waveSimple"],
+  "features": [
+    "battery"
+  ],
+  "featuresMissing": [
+    "oldMouseEffects",
+    "waveSimple"
+  ],
   "featuresConfig": [
     {
       "mouseBrightness": {

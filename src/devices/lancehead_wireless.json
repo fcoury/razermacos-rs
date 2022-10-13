@@ -3,7 +3,9 @@
   "productId": "0x005A",
   "mainType": "mouse",
   "image": "https://assets.razerzone.com/eeimages/support/products/1205/1205_lancehead.png",
-  "features": null,
+  "features": [
+    "battery"
+  ],
   "featuresConfig": [
     {
       "mouseBrightness": {

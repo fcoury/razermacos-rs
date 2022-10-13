@@ -17,6 +17,14 @@ impl RazerDevices {
         Self(devices)
     }
 
+    pub fn all(&mut self) -> Option<Vec<RazerDevice<'_>>> {
+        let devices: Vec<_> = self.slice_mut().iter_mut().map(|r| r.into()).collect();
+        if devices.is_empty() {
+            return None;
+        }
+        Some(devices)
+    }
+
     pub fn find(&mut self, product_id: u16) -> Option<RazerDevice<'_>> {
         let descriptor = devices::find_descriptor(product_id);
         match descriptor {
@@ -81,6 +89,40 @@ impl RazerDevice<'_> {
         };
         format!("{}", c_str.to_str().unwrap()).starts_with("1")
     }
+
+    pub fn has_battery(&self) -> bool {
+        if let Some(features) = &self.features {
+            features.contains(&"battery".to_string())
+        } else {
+            false
+        }
+    }
+
+    pub fn product_id(&self) -> u16 {
+        self.device.productId
+    }
+
+    pub fn device_id(&self) -> i32 {
+        self.device.internalDeviceId
+    }
+}
+
+impl<'a> From<&'a mut librazermacos_sys::RazerDevice> for RazerDevice<'a> {
+    fn from(device: &'a mut librazermacos_sys::RazerDevice) -> Self {
+        let descriptor = devices::find_descriptor(device.productId);
+        match descriptor {
+            Some(descriptor) => RazerDevice {
+                device,
+                name: descriptor.name.clone(),
+                image: descriptor.image.clone(),
+                main_type: descriptor.main_type.clone(),
+                features: descriptor.features.clone(),
+                features_missing: descriptor.features_missing.clone(),
+                features_config: descriptor.features_config.clone(),
+            },
+            None => unimplemented!(),
+        }
+    }
 }
 
 #[cfg(test)]
@@ -91,12 +133,23 @@ mod tests {
 
     #[test]
     fn it_works() {
-        let mut devices = RazerDevices::init();
+        let mut devices = RazerDevices::new();
         let device = devices.find(USB_DEVICE_ID_RAZER_VIPER_ULTIMATE_WIRELESS as u16);
         if let Some(device) = device {
             println!("{} - Battery: {}", device.name, device.battery());
         } else {
             println!("Device not found");
+        }
+        drop(devices);
+
+        let mut devices = RazerDevices::new();
+        let devices = devices.all();
+        if let Some(devices) = devices {
+            for device in devices {
+                println!("- {} {}", device.name, device.battery());
+            }
+        } else {
+            println!("No devices found");
         }
     }
 }
