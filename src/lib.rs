@@ -36,7 +36,7 @@ impl RazerDevices {
                     device,
                     name: descriptor.name.clone(),
                     image: descriptor.image.clone(),
-                    main_type: descriptor.main_type.clone(),
+                    main_type: descriptor.main_type,
                     features: descriptor.features.clone(),
                     features_missing: descriptor.features_missing.clone(),
                     features_config: descriptor.features_config.clone(),
@@ -47,6 +47,12 @@ impl RazerDevices {
 
     fn slice_mut(&mut self) -> &mut [librazermacos_sys::RazerDevice] {
         unsafe { slice::from_raw_parts_mut(self.0.devices, self.0.size as usize) }
+    }
+}
+
+impl Default for RazerDevices {
+    fn default() -> Self {
+        Self::new()
     }
 }
 
@@ -75,9 +81,9 @@ impl RazerDevice<'_> {
 
             CStr::from_ptr(buf.as_ptr())
         };
-        let str = format!("{}", c_str.to_str().unwrap()).trim().to_string();
+        let str = c_str.to_str().unwrap().to_string().trim().to_string();
         let current: u8 = str.parse().unwrap();
-        return ((current as f32 / 255.0) * 100.0) as u8;
+        ((current as f32 / 255.0) * 100.0) as u8
     }
 
     pub fn is_charging(&self) -> bool {
@@ -87,7 +93,7 @@ impl RazerDevice<'_> {
 
             CStr::from_ptr(buf.as_ptr())
         };
-        format!("{}", c_str.to_str().unwrap()).starts_with("1")
+        c_str.to_str().unwrap().to_string().starts_with('1')
     }
 
     pub fn has_battery(&self) -> bool {
@@ -115,7 +121,7 @@ impl<'a> From<&'a mut librazermacos_sys::RazerDevice> for RazerDevice<'a> {
                 device,
                 name: descriptor.name.clone(),
                 image: descriptor.image.clone(),
-                main_type: descriptor.main_type.clone(),
+                main_type: descriptor.main_type,
                 features: descriptor.features.clone(),
                 features_missing: descriptor.features_missing.clone(),
                 features_config: descriptor.features_config.clone(),
@@ -127,14 +133,14 @@ impl<'a> From<&'a mut librazermacos_sys::RazerDevice> for RazerDevice<'a> {
 
 #[cfg(test)]
 mod tests {
-    use librazermacos_sys::USB_DEVICE_ID_RAZER_VIPER_ULTIMATE_WIRELESS;
+    use librazermacos_sys::USB_DEVICE_ID_RAZER_MOUSE_DOCK_PRO;
 
     use super::*;
 
     #[test]
     fn it_works() {
         let mut devices = RazerDevices::new();
-        let device = devices.find(USB_DEVICE_ID_RAZER_VIPER_ULTIMATE_WIRELESS as u16);
+        let device = devices.find(USB_DEVICE_ID_RAZER_MOUSE_DOCK_PRO as u16);
         if let Some(device) = device {
             println!("{} - Battery: {}", device.name, device.battery());
         } else {

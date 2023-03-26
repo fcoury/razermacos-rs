@@ -1,0 +1,25 @@
+{
+  "name": "Razer Mouse Dock Pro",
+  "productId": "0x00A4",
+  "mainType": "mousedock",
+  "image": "https://assets3.razerzone.com/gct2QRE23xgDf0KQfkFD35YEoKY=/1500x1000/https%3A%2F%2Fhybrismediaprod.blob.core.windows.net%2Fsys-master-phoenix-images-container%2Fh05%2Fh7a%2F9449945956382%2F220823-mouse-dock-pro-1500x1000-1-v2.jpg",
+  "features": [
+    "battery"
+  ],
+  "featuresMissing": [],
+  "featuresConfig": [
+    {
+      "dpi": {
+        "max": 30000
+      }
+    },
+    {
+      "mouseBrightness": {
+        "enabledMatrix": false,
+        "enabledScroll": false,
+        "enabledLeft": false,
+        "enabledRight": false
+      }
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 [package]
 authors = ["Felipe Coury <felipe.coury@gmail.com>"]
+build = "build.rs"
 categories = ["api-bindings"]
 description = """
 Bindings to librazermacos for allowing interaction with Razer peripherals
